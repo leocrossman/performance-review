@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
-import { ThemeProvider } from './components/ThemeContext';
-import Background from './components/Background';
-import Toggle from './components/ThemeToggle';
+import { ThemeProvider } from './components/DarkTheme/ThemeContext';
+import Background from './components/DarkTheme/Background';
+import Toggle from './components/DarkTheme/ThemeToggle';
 
 ReactDOM.render(
   <React.StrictMode>
