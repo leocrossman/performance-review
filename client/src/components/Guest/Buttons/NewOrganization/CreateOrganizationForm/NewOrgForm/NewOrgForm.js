@@ -12,7 +12,7 @@ export default function NewOrgForm() {
 
   const addOrganization = async (name) => {
     try {
-      const res = await fetch('/organizations', {
+      const res = await fetch('/api/organizations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export default function NewOrgForm() {
       if (res.status !== 200) throw new Error(res.status);
       return res;
     } catch (error) {
-      throw new Error(`There was an issue adding the organization to the server. Status: ${error}`);
+      throw new Error(`There was an issue adding the organization to the server. ${error}`);
     }
   };
 
@@ -37,7 +37,7 @@ export default function NewOrgForm() {
 
   return (
     <>
-      <form className='mt-8 space-y-6' action='#' method='POST'>
+      <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
         <input type='hidden' name='remember' defaultValue='true' />
         <div className='rounded-md shadow-sm -space-y-px'>
           <div>

@@ -1,4 +1,5 @@
 const db = require('../models/db');
+const getDateInSQLFormat = require('../../util/getDateInFormat');
 
 const organizationController = {};
 
@@ -21,9 +22,10 @@ organizationController.getOrganizations = async (req, res, next) => {
 
 organizationController.addOrganization = async (req, res, next) => {
   try {
+    const { name } = req.body;
     const queryString = `
 		INSERT INTO organizations(name, date_created)
-		VALUES('codesmith3', '2021-12-26')
+		VALUES(${name}, ${getDateInSQLFormat()})
 		`;
 
     const newOrganization = await db.query(queryString);

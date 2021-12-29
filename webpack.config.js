@@ -76,6 +76,14 @@ const config = {
     static: {
       directory: './client/dist',
     },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000/',
+        pathRewrite: { '^/api': '' },
+        secure: false,
+      },
+    },
+    port: 8080,
   },
   plugins: [
     new HtmlWebpackPlugin({
