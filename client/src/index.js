@@ -7,6 +7,7 @@ import App from './components/App/App.js';
 import { ThemeProvider } from './components/DarkTheme/ThemeContext';
 import Background from './components/DarkTheme/Background';
 import Toggle from './components/DarkTheme/ThemeToggle';
+import CreateOrganizationForm from './components/Guest/Buttons/NewOrganization/CreateOrganizationForm/CreateOrganizationForm';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,10 +18,9 @@ ReactDOM.render(
             <Toggle />
           </div>
 
-          <App />
           <Routes>
             <Route path='/' element={<App />} />
-            {/* <Route path='about' element={<About />} /> */}
+            <Route path='createOrganizationForm' element={<CreateOrganizationForm />} />
           </Routes>
         </Background>
       </ThemeProvider>

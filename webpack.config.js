@@ -10,6 +10,12 @@ const config = {
   },
   module: {
     rules: [
+      // would only land a "hot-patch" to react-dom
+      {
+        test: /\.js$/,
+        include: /node_modules\/react-dom/,
+        use: ['react-hot-loader/webpack'],
+      },
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
