@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 export default function NewOrgForm() {
   const [response, setResponse] = useState('');
-  const [post, setPost] = useState('');
+  const [name, setName] = useState('');
   const [responseToPost, setResponseToPost] = useState('');
   // useEffect(() => {
   //   // addOrganization(name);
@@ -9,15 +9,14 @@ export default function NewOrgForm() {
   //     // cleanup
   //   };
   // }, []);
-
   const addOrganization = async (name) => {
     try {
-      const res = await fetch('/api/organizations', {
+      const res = await fetch('/api/organizations/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ post }),
+        body: JSON.stringify({ name }),
       });
 
       if (res.status !== 200) throw new Error(res.status);
@@ -27,12 +26,9 @@ export default function NewOrgForm() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const res = await addOrganization(e.target.value);
-    console.log(res);
-    const body = await res.text();
-    setResponseToPost(body);
+    addOrganization(e.target[1].value);
   };
 
   return (
@@ -51,6 +47,8 @@ export default function NewOrgForm() {
               required
               className='appearance-none rounded-none relative block w-full px-3 py-2 border dark:bg-gray-800 border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-500 text-gray-900 dark:text-gray-100 rounded-t-md rounded-b-md focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm'
               placeholder='Organization name'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
         </div>

@@ -5,7 +5,7 @@ const organizationController = {};
 
 organizationController.getOrganizations = async (req, res, next) => {
   try {
-    const queryString = 'select * from organizations;';
+    const queryString = 'SELECT * FROM organizations;';
     const result = await db.query(queryString);
     const organizations = result.rows;
     res.locals.organizations = organizations;
@@ -25,22 +25,21 @@ organizationController.addOrganization = async (req, res, next) => {
     const { name } = req.body;
     const queryString = `
 		INSERT INTO organizations(name, date_created)
-		VALUES(${name}, ${getDateInSQLFormat()})
+		VALUES('${name}', '${getDateInSQLFormat()}');
 		`;
 
-    const newOrganization = await db.query(queryString);
-
-    res.locals.newOrganization = newOrganization;
+    const result = await db.query(queryString);
+    const newOrganization = result.rows[0];
+    res.locals.organization = newOrganization;
     return next();
   } catch (error) {
-    next({
-      log: `organizationController.addOrganization: ERROR: ${error}`,
+    return next({
+      log: `organizationController.addOrganization: ${error}`,
       message: {
-        err: 'Error occurred in organizationController.addOrganization. Error getting characters data from db. Check the server logs.',
+        err: 'Error occurred in organizationController.addOrganization. Error adding organization to db. Check the server logs.',
       },
     });
   }
-  return next();
 };
 
 module.exports = organizationController;
