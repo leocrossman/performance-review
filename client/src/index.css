@@ -6,9 +6,6 @@
   background-color: #8a8a8a;
 }
 
-/* <html class="h-full bg-gray-50">
-        <body class="h-full"> */
-
 html {
   @apply h-full bg-gray-50;
 }
