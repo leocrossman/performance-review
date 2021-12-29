@@ -12,6 +12,7 @@
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
+    "@babel/runtime": "^7.16.5",
     "@heroicons/react": "^1.0.5",
     "@tailwindcss/forms": "^0.4.0",
     "body-parser": "^1.19.1",
@@ -27,6 +28,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.5.4",
+    "@babel/plugin-transform-runtime": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.5",
     "@hot-loader/react-dom": "^17.0.1+4.13.0",
@@ -36,6 +39,7 @@
     "css-loader": "^6.5.1",
     "eslint": "^8.5.0",
     "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "node-sass": "^7.0.1",
