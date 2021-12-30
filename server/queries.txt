@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS organizations;
+CREATE TABLE IF NOT EXISTS organizations (
+	id serial UNIQUE,
+	PRIMARY KEY( id ),
+	name TEXT NOT NULL,
+	date_created DATE NOT NULL
+);
+
+DROP TABLE IF EXISTS members;
+CREATE TABLE IF NOT EXISTS members (
+	id serial,
+	name text,
+	password text,
+	email text,
+	date_created date,
+	role text,
+	organization_id INTEGER REFERENCES organizations (id),
+	PRIMARY KEY( id )
+);

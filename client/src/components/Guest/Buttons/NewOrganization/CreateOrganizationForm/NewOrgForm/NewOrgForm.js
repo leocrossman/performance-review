@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react';
-// import Tooltip from './Tooltip/Tooltip';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 export default function NewOrgForm() {
   const [name, setName] = useState('');
-  // useEffect(() => {
-  //   // addOrganization(name);
-  //   return () => {
-  //     // cleanup
-  //   };
-  // }, []);
+
   const addOrganization = async (name) => {
     try {
       const res = await fetch('/api/organizations/new', {
@@ -19,11 +14,9 @@ export default function NewOrgForm() {
       });
 
       if (res.status !== 200) throw new Error(res.status);
-      // TODO: FIGURE OUT WHY THIS RESPONSE OBJECT IS EMPTY EVEN THOUGH IT'S VIEWABLE IN THE RESPONSE OF THE NETWORK REQUEST
-      console.log(res);
       return res;
     } catch (error) {
-      throw new Error(`There was an issue adding the organization to the server. ${error}`);
+      throw new Error(`There was an issue adding the organization to the database. ${error}`);
     }
   };
 
@@ -57,12 +50,24 @@ export default function NewOrgForm() {
         </div>
 
         <div>
-          <button
-            type='submit'
-            className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500'
-          >
-            Submit
-          </button>
+          {name ? (
+            <Link
+              to={{
+                pathname: '/new+member',
+                state: { organizationName: name },
+              }}
+              className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500'
+            >
+              Submit
+            </Link>
+          ) : (
+            <button
+              type='submit'
+              className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500'
+            >
+              Submit
+            </button>
+          )}
         </div>
       </form>
     </>

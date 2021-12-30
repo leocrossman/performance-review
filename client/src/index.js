@@ -8,6 +8,8 @@ import Background from './components/DarkTheme/Background';
 import Toggle from './components/DarkTheme/ThemeToggle';
 import Footer from './components/Footer/Footer';
 import CreateOrganizationForm from './components/Guest/Buttons/NewOrganization/CreateOrganizationForm/CreateOrganizationForm';
+import CreateAccountForm from './components/Guest/Buttons/CreateAccount/CreateAccountForm/CreateAccountForm';
+import Dashboard from './components/Dashboard/Dashboard';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +21,8 @@ ReactDOM.render(
           </div>
           <Routes>
             <Route path='/' element={<App />} />
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='new+member' element={<CreateAccountForm />} />
             <Route path='new+organization' element={<CreateOrganizationForm />} />
           </Routes>
           <div className='flex items-center justify-center absolute bottom-0 min-w-full'>
