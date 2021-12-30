@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
+// import Tooltip from './Tooltip/Tooltip';
 export default function NewOrgForm() {
-  const [response, setResponse] = useState('');
   const [name, setName] = useState('');
-  const [responseToPost, setResponseToPost] = useState('');
   // useEffect(() => {
   //   // addOrganization(name);
   //   return () => {
@@ -20,6 +19,8 @@ export default function NewOrgForm() {
       });
 
       if (res.status !== 200) throw new Error(res.status);
+      // TODO: FIGURE OUT WHY THIS RESPONSE OBJECT IS EMPTY EVEN THOUGH IT'S VIEWABLE IN THE RESPONSE OF THE NETWORK REQUEST
+      console.log(res);
       return res;
     } catch (error) {
       throw new Error(`There was an issue adding the organization to the server. ${error}`);
@@ -33,9 +34,10 @@ export default function NewOrgForm() {
 
   return (
     <>
-      <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
-        <input type='hidden' name='remember' defaultValue='true' />
+      <form className='mt-8 space-y-10' onSubmit={handleSubmit}>
+        <input type='hidden' name='remember' />
         <div className='rounded-md shadow-sm -space-y-px'>
+          {/* <Tooltip tooltipText='This is the tooltip'> */}
           <div>
             <label htmlFor='organization-name' className='sr-only'>
               Organization name
@@ -51,6 +53,7 @@ export default function NewOrgForm() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
+          {/* </Tooltip> */}
         </div>
 
         <div>
